@@ -19,6 +19,15 @@
   $data = htmlspecialchars($data);
   return $data;
 }
+
+function clean_dni($data) {
+$data = trim($data);
+$data = stripslashes($data);
+$data = htmlspecialchars($data);
+return $data;
+
+
+}
 ?>
 
 <html>
@@ -51,7 +60,7 @@
 
 		if (empty($_POST["dni"])) {
 			$mostrar = false;
-			$dniErr = "Nombre requerido";
+			$dniErr = "Campo requerido";
 		} else {
 			$dniErr = "";
 			$dni = test_input($_POST["dni"]);
