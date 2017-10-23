@@ -8,8 +8,9 @@
 <?php
 	//inicialitzar les variables
 	$nom  = $llin = $dni = $tlf = $email ="";
-	$nomErr = $llinErr = $dniErr = $tlfErr = $emailErr = "";
+	$nomErr = $llinErr = $dniErr = $tlfErr = $emailErr = $emailNoVal = "";
 	$mostrar = false;
+	$comprobarEmail = "";
 
 
 
@@ -60,19 +61,17 @@ return $data;
 
 
 		if (isset ($_POST["dni"])) {
-					$dni = $_POST["dni"];
-					$dniNum = strlen($dni);
-					$dniLetra = substr($dni, -1);
-					$dniNumeros = substr($dni, 0, 8);
-					if ($dni == "") {
+				$dni = $_POST["dni"];
+				$dniNum = strlen($dni);
+				$dniLetra = substr($dni, -1);
+				$dniNumeros = substr($dni, 0, 8);
+				if ($dni == "") {
 						$dniErr = "vacio";
-
-					}
-					elseif (!is_numeric($dniNumeros) || is_numeric($dniLetra) || $dniNum !== 9  ) {
-						$dniErr = "mal";
-					}
-
 				}
+				elseif (!is_numeric($dniNumeros) || is_numeric($dniLetra) || $dniNum !== 9  ) {
+					$dniErr = "mal";
+				}
+		}
 
 		if (empty($_POST["tlf"])) {
 			$mostrar = false;
@@ -84,18 +83,22 @@ return $data;
 		}
 
 		if (empty($_POST["email"])) {
-			$mostrar = false;
-			$emailErr = "Nombre requerido";
-		} else {
-			$emailErr = "";
-			$email = test_input($_POST["email"]);
-			$mostrar = true;
+				$mostrar = false;
+				$comprobarEmail = "vacio";
+				$emailVacio = "Campo requerido";
+		} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+				$comprobarEmail = "mal";
+				$emailMal = "Tiene que tener formato email";
 		}
+
+
 }
 
 
 
 if($mostrar){
+
+
 	?>
 
 
@@ -109,12 +112,13 @@ if($mostrar){
 
 	  <form action="form.php" method="post">
 	  Nom:   <input type="text"   name="nom"><?php echo $nomErr;?><br>
-    Llinatge: <input type="text"   name="llin"><<?php echo $llinErr;?>br>
-    DNI: <input type="text"   name="dni"><?php if ($dniErr == "mal") { echo "mal xd";} elseif ($dniErr == "vacio"){ echo "vacui xd";} {
-    	# code...
-    } ?><br>
+    Llinatge: <input type="text"   name="llin"><?php echo $llinErr;?><br>
+    DNI: <input type="text"   name="dni"><?php if ($dniErr == "mal") { echo "mal xd";} elseif ($dniErr == "vacio"){ echo "vacio";} ?>
+<br>
     Teléfon: <input type="text"   name="tlf"><?php echo $tlfErr;?><br>
-	  E-mail: <input type="text"   name="email"><?php echo $emailErr;?><br>
+	  E-mail: <input type="text"   name="email"><?php if ($comprobarEmail == "vacio"){echo $emailVacio;} elseif ($comprobarEmail == "mal"){ echo $emailMal;} {
+	  	# code...
+	  } ?><br>
 		Data de naixement:   <input type="date" name="dnaix"><br>
 
 
