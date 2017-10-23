@@ -1,0 +1,37 @@
+.contenedor {
+	width: 500px;
+	margin: auto;
+	border: 1px solid black;
+}
+
+.formulario {
+
+}
+
+.nom {
+	display: inline-block;
+  margin: 10px;
+}
+
+.llin {
+	display: inline-block;
+	float: right;
+  margin: 10px;
+
+}
+
+.dni {
+  display: inline-block;
+  margin: 10px;
+}
+
+.tlf {
+  display: inline-block;
+  margin: 10px;
+  float: right;
+}
+
+.email {
+  display: inline-block;
+  margin: 10px;
+}
