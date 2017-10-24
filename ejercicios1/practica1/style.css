@@ -8,9 +8,9 @@
 body {
   font-family: 'Nunito', sans-serif;
   color: #384047;
-	background: #A1FFCE;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #FAFFD1, #A1FFCE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	background: #00b09b;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #96c93d, #00b09b);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #96c93d, #00b09b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
 
@@ -26,12 +26,11 @@ h1 {
   text-align: center;
 }
 
-#requerido {
-	color: red;
-}
+
 
 .campo {
 	color: red;
+	display: none;
 }
 
 input[type="text"],
@@ -108,4 +107,14 @@ label.light {
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,0.2);
   border-radius: 100%;
+}
+
+select:focus{
+  color: black;
+
+}
+
+input:focus {
+    color: black;
+    background-color: #DCE8BA;
 }
