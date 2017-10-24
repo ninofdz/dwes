@@ -1,37 +1,21 @@
 
-*, *:before, *:after {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 body {
   font-family: 'Nunito', sans-serif;
   color: #384047;
-	background: #A1FFCE;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #FAFFD1, #A1FFCE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
 }
 
 form {
-  max-width: 400px;
+  max-width: 300px;
   margin: 10px auto;
   padding: 10px 20px;
   background: #f4f7f8;
   border-radius: 8px;
 }
+
 h1 {
   margin: 0 0 30px 0;
   text-align: center;
-}
-
-#requerido {
-	color: red;
-}
-
-.campo {
-	color: red;
 }
 
 input[type="text"],
@@ -56,6 +40,7 @@ input[type="radio"],
 input[type="checkbox"] {
   margin: 0 4px 8px 0;
 }
+
 select {
   padding: 6px;
   height: 32px;
@@ -96,6 +81,7 @@ label.light {
   font-weight: 300;
   display: inline;
 }
+
 .number {
   background-color: #5fcf80;
   color: #fff;
@@ -108,4 +94,12 @@ label.light {
   text-align: center;
   text-shadow: 0 1px 0 rgba(255,255,255,0.2);
   border-radius: 100%;
+}
+
+@media screen and (min-width: 480px) {
+
+  form {
+    max-width: 480px;
+  }
+
 }

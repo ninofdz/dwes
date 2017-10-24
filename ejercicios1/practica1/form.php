@@ -7,10 +7,9 @@
 
 <?php
 	//inicialitzar les variables
-	$nom  = $llin = $dni = $tlf = $email = "";
-	$nomErr = $llinErr = $dniErr = $tlfErr = $emailErr = $emailNoVal = "";
-	$mostrar = false;
-	$mostrar2 = false;
+	$user_nom  = $user_llin = $user_dni = $user_tlf = $user_email = "";
+	$nomErr = $llinErr = $dniErr = $tlfErr = "";
+	$emailErr = ".";
 	$comprobarEmail = "";
 
 
@@ -41,72 +40,60 @@
 
 
 	//Si ha estat processat el formulari, mostro els resultats
-	if (isset( $_POST['submit'] ) ) {
+	if (isset( $_POST['envia'] ) ) {
 
-		if (empty($_POST["nom"])) {
-			$mostrar = false;
-			$nomErr = "<span style='color:red'>nombre</span>";
+		if (empty($_POST["user_nom"])) {
+			$nomErr = "<span style='color:red'>*</span>";
 			echo "<style> #nom1{background-color:red} </style>";
 		} else {
-			$nameErr = "";
-			$nom = clean_name($_POST["nom"]);
-			$mostrar = true;
+			$nom = clean_name($_POST["user_nom"]);
 		}
 
-		if (empty($_POST["llin"])) {
-			$mostrar = false;
-			$llinErr = "Nombre requerido";
+		if (empty($_POST["user_llin"])) {
+			$llinErr = "<span style='color:red'>*</span>";
 		} else {
-			$llinErr = "";
-			$llin = clean_name($_POST["llin"]);
-			$mostrar = true;
+			$llin = clean_name($_POST["user_llin"]);
 		}
 
 
-		if (isset ($_POST["dni"])) {
-			$mostrar = false;
-				$dni = $_POST["dni"];
-				$dniNum = strlen($dni);
-				$dniLetra = substr($dni, -1);
-				$dniNumeros = substr($dni, 0, 8);
-				if ($dni == "") {
-						$dniErr = "vacio";
-				}
-				elseif (!is_numeric($dniNumeros) || is_numeric($dniLetra) || $dniNum !== 9  ) {
-					$dniErr = "mal";
-					$mostrar = true;
-				}
+		if (isset ($_POST["user_dni"])) {
+			$dni = $_POST["user_dni"];
+			$dniNum = strlen($dni);
+			$dniLetra = substr($dni, -1);
+			$dniNumeros = substr($dni, 0, 8);
+			if ($dni == "") {
+					$dniErr = "*";
+			}
+			elseif (!is_numeric($dniNumeros) || is_numeric($dniLetra) || $dniNum !== 9  ) {
+				$dniErr = "mal";
+			}
+
 		}
 
-		if (empty($_POST["tlf"])) {
-			$mostrar = false;
-			$tlfErr = "Nombre requerido";
+		if (empty($_POST["user_tlf"])) {
+			$tlfErr = "<span style='color:red'>*</span>";
 		} else {
-			$tlfErr = "";
-			$tlf = clean_name($_POST["tlf"]);
-			$mostrar = true;
+			$tlf = clean_name($_POST["user_tlf"]);
 		}
 
-		$email = $_POST["email"];
+		$email = $_POST["user_email"];
 
-		if (empty($_POST["email"])) {
-				$mostrar2 = false;
-				$comprobarEmail = "vacio";
-				$emailVacio = "Campo requerido";
+		if (empty($_POST["user_email"])) {
+				$comprobarEmail = "user_vacio";
+				$emailErr = "<span style='color:red'>*</span>";
 		} elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 				$comprobarEmail = "mal";
-				$emailMal = "Tiene que tener formato email";
-				$mostrar2 = false;
+				$emailErr = "<span style='color:red'>Formato de email</span>";
 		} else {
-				$mostrar2 = true;
+				$emailErr = "";
 		}
 
 
 }
 
 
-
-if($mostrar && $mostrar2){
+if( empty($nomErr) && empty($llinErr) && empty($dniErr) &&
+empty($tlfErr) && empty($emailErr)){
 
 
 	?>
@@ -122,60 +109,64 @@ if($mostrar && $mostrar2){
 
 <div class="contenedor">
 
-
 		<div class="formulario">
 
-
 	  <form action="form.php" method="post">
-			<div class="nom">
-				Nom:   <input type="text" id="nom1"  name="nom"><?php echo $nomErr;?>
-			</div>
-			<div class="llin">
-				Llinatge: <input type="text"   name="llin"><?php echo $llinErr;?><br>
-			</div>
-			<div class="dni">
-				DNI: <input type="text"   name="dni"><?php if ($dniErr == "mal") { echo "mal xd";} elseif ($dniErr == "vacio"){ echo "vacio";} ?>
-			</div>
+		<h1>Registra't</h1>
 
-			<div class="tlf">
-				Teléfon: <input type="text"   name="tlf"><?php echo $tlfErr;?><br>
-			</div>
-			<div class="email">
-				E-mail: <input type="text"   name="email">
+			<fieldset>
+				<legend><span class="number">1</span>Your basic info</legend>
+				<span class="campo">Campo requerido *</span><br>
+			  <label for="name">Name<span id="requerido">*</span><?php echo $nomErr;?>:</label>
+				<input type="text" id="name"  name="user_nom">
+
+				<label for="llin">Llinatge:<span id="requerido">*</span><?php echo $llinErr;?></label>
+				<input type="text"  id="llin" name="user_llin">
+
+				<label for="dni">DNI:</label>
+				<input type="text"  id="dni" name="user_dni"><?php if ($dniErr == "*") { echo "vacio";} elseif ($dniErr == "mal"){ echo "tiene que tener formato DNI";} ?>
+
+				<label for="tlf">Teléfon:</label>
+				<input type="text" id="tlf"  name="user_tlf"><?php echo $tlfErr;?><br>
+
+				<label for="email">Email:</label>
+				<input type="text" id="email"  name="user_email" placeholder="Ex: tuemail@dominio.com">
 				<?php
 				if ($comprobarEmail == "vacio"){
-					echo $emailVacio;
+					echo $emailErr;
 				} elseif ($comprobarEmail == "mal"){
-					 echo $emailMal;
+					 echo $emailErr;
 				} ?>
-			</div>
 
-		 <br>
-		Data de naixement:   <input type="date" name="dnaix"><br>
+				<label for="dnaix">Data naixement:</label>
+				<input type="date" id="dnaix" name="user_dnaix"><br>
 
+				<label for="sexe">Sexe:</label>
+  			<input type="radio" id="sexe" name="user_sexe" value="hombre"> Hombre
+    		<input type="radio" id="sexe" name="user_sexe" value="mujer"> Mujer
+    		<input type="radio" id="sexe" name="user_sexe" value="otro"> Otro
+			</fieldset>
 
-    Sexe: <input type="radio" name="sexe" value="hombre"> Hombre
-    <input type="radio" name="sexe" value="hombre"> Mujer
-    <input type="radio" name="sexe" value="hombre"> Otro <br>
+			<fieldset>
+				<legend><span class="number">2</span>Your Profile</legend>
 
-		Coneixements: <br>
-    <input type="checkbox" name="coneixements" value="java">Java<br>
-    <input type="checkbox" name="coneixements" value="html5">HTML5<br>
-    <input type="checkbox" name="coneixements" value="javascript">Javascript<br>
-    <input type="checkbox" name="coneixements" value="php">PHP<br>
-    <input type="checkbox" name="coneixements" value="xml">XML<br>
-    <input type="checkbox" name="coneixements" value=".net">.NET<br>
+				<label>Coneixements: </label>
+			    <input type="checkbox" name="user_coneixements[]" value="java"><label class="light" for="java">Java</label><br>
+			    <input type="checkbox" name="user_coneixements[]" value="html5"><label class="light" for="html5">Html5</label><br>
+			    <input type="checkbox" name="user_coneixements[]" value="javascript"><label class="light" for="javascript">Javascript</label><br>
+			    <input type="checkbox" name="user_coneixements[]" value="php"><label class="light" for="php">PHP</label><br>
+			    <input type="checkbox" name="user_coneixements[]" value="xml"><label class="light" for="xml">XML</label><br>
+			    <input type="checkbox" name="user_coneixements[]" value=".net"><label class="light" for="net">.NET</label><br>
 
-		Experiencia laboral:
-    <select>
-      <option value="sense">Sense experiència</option>
-      <option value="menor1"> < 1 any</option>
-      <option value="menor2"> < 2 anys</option>
-      <option value="mayor2"> > 2 anysAudi</option>
-    </select>
-		<br>
-
-	          <input type="submit" name="submit" value="Enviar"><br>
+					<label for="job">Experiencia laboral</label>
+				    <select id="job" name="user_job">
+				      <option value="sense">Sense experiència</option>
+				      <option value="menor1"> < 1 any</option>
+				      <option value="menor2"> < 2 anys</option>
+				      <option value="mayor2"> > 2 anysAudi</option>
+				    </select>
+					</fieldset>
+	        <button type="submit" name="envia">enviar</button>
 	  </form>
 		</div>
 		</div>
