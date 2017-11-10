@@ -1,10 +1,14 @@
 <?php
+
+	// @author Tonino Fernández
+
 	//inicialitzar les variables
-	$user_nom  = $user_llin = $user_dni =  $user_email = $user_tlf =  "";
+	$user_nom  = $user_llin = $user_dni =  $user_email = $user_tlf = $user_dnaix =  "";
 	$nomErr = $llinErr = $dniErr = $tlfErr = $coneixErr = "";
 	$emailErr = ".";
 	$comprobarEmail = "";
 	$contar = "";
+
 
 
 	// funció que neteja el camp de caràcters especials i evita atacs de SQL Injection
@@ -19,6 +23,7 @@
 
 <html>
 <head>
+
 	<style>
 
 	*, *:before, *:after {
@@ -331,9 +336,9 @@ empty($tlfErr) && empty($emailErr)){
 				<input type="date" id="dnaix" name="user_dnaix" value="<?php echo $user_dnaix?>">
 
 				<label for="sexe">Sexe:</label>
-  			<input type="radio" id="sexe" name="user_sexe" value="hombre"> Hombre
+  			<input type="radio" id="sexe" name="user_sexe" value="hombre" > Hombre
     		<input type="radio" id="sexe" name="user_sexe" value="mujer"> Mujer
-    		<input type="radio" id="sexe" name="user_sexe" value="otro"> Otro
+    		<input type="radio" id="sexe" name="user_sexe" value="otro" checked> Otro
 			</fieldset>
 
 			<fieldset>
