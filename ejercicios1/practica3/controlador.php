@@ -1,11 +1,22 @@
 <?php
 
-$servername = "localhost";
-$username = "root";
-$password = "root";
-$dbname = "components_data";
-// create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+  $servername = "localhost";
+  $username = "root";
+  $password = "root";
+  $dbname = "components_data";
+
+
+  $tabla_db1 = "components";
+
+
+  // create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+
+function close_conn(){
+  global $conn;
+  mysqli_close($conn);
+}
 // check connection
 
 // if ($conn->connect_error) {
@@ -19,7 +30,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 function consult(){
   global $conn;
-  $sql = "select * from components";
+  global $tabla_db1;
+  $sql = "select * from $tabla_db1";
   $result = $conn->query($sql);
 
 
@@ -28,6 +40,7 @@ function consult(){
       $showComponents = "
       <table>
         <tr>
+          <th>Tipo</th>
           <th>Modelo</th>
           <th>Precio</th>
           <th>Descripcion</th>
@@ -37,6 +50,7 @@ function consult(){
 
         $showComponents.=
         "<tr>
+          <td>".$row["Type"]." </td>
           <td>".$row["Model"]." </td>
           <td>".$row["Price"]." </td>
           <td>".$row["Description"]."</td>
@@ -62,16 +76,21 @@ function test_input(&$data) {
 
 }
 
-function add_component($model, $price, $description){
+function add_component($type, $model, $price, $description){
+  global $conn;
+  global $tabla_db1;
 
-  test_input($model);
-  test_input($price);
-  test_input($description);
+  $type = test_input($type);
+  $model = test_input($model);
+  $price = test_input($price);
+  $description = test_input($description);
 
-  $sql = "INSERT INTO components (Model, Price, Description) VALUES ($model, $price, $description)";
+  $sql = "INSERT INTO $tabla_db1 (Type, Model, Price, Description) VALUES ('$type', '$model', $price, '$description')";
 
   if ($conn->query($sql) === TRUE) {
       echo "Nou registre creat";
+      header('location: index.php');
+
   } else {
       echo "<br>Error:" . $conn->error;
   }
