@@ -1,17 +1,5 @@
 <?php
 
-
-// check connection
-
-// if ($conn->connect_error) {
-  // die("Connection failed: " . $conn->connect_error);
-// }
-// else {
-//    echo "Connected successfully";
-// }
-
-// consults
-
 $tabla_db1 = "components";
 
 function consult($conn){
@@ -24,7 +12,9 @@ function consult($conn){
   if ($result->num_rows > 0) {
       // output data of each row
       $showComponents = "
-      <table>
+    <center>
+    <h1>Componentes</h1>
+      <table border = \"1\" width = \"600\" height = \"150\">
         <tr>
           <th>Tipo</th>
           <th>Modelo</th>
@@ -44,9 +34,9 @@ function consult($conn){
         ";
       }
 
-      $showComponents.= "</table>";
+      $showComponents.= "</table></center>";
       echo $showComponents;
-      echo "<a  href=\"http://127.0.0.1/dwes/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a>";
+      echo "<br><center><a  href=\"http://127.0.0.1/dwes/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a></center>";
 
   } else {
       echo "0 results";
@@ -73,7 +63,6 @@ function add_component($conn, $type, $model, $price, $description){
   $sql = "INSERT INTO $tabla_db1 (Type, Model, Price, Description) VALUES ('$type', '$model', $price, '$description')";
 
   if ($conn->query($sql) === TRUE) {
-      echo "Nou registre creat";
       header('location: index.php');
 
   } else {
