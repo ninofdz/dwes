@@ -38,7 +38,8 @@ function consult($conn){
 
       $showComponents.= "</table></center>";
       echo $showComponents;
-      echo "<br><center><a  href=\"http://localhost/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a></center>";
+      echo "<br><center><a  href=\"http://127.0.0.1/dwes/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a>";
+      echo "<a  href=\"http://127.0.0.1/dwes/ejercicios1/practica3/controlador_baja.php\"><button type=\"button\">Modificar</button></a></center>";
 
   } else {
     // si no hay mas de 0 columnas muestra que no hay resultados

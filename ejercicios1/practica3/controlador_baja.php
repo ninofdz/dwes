@@ -53,18 +53,19 @@ function modificar($conn){
       echo "0 results";
   }
 
+  // Si se ha enviado el parametro drop, eliminará el registro con ese ID asociado
   if (isset($_GET['drop'])) {
     $id = $_GET['drop'];
     $sqlDelete = "DELETE FROM $tabla_db1 WHERE ID = '$id'";
 
     //Ejecutar la consulta
-    $resultadoDelete = mysql_query($sqlDelete);
+    $resultadoDelete = $conn->query($sqlDelete);
 
     //redirigir nuevamente a la página para ver el resultado
     header("location: index.php");
 
   }
-  //close_conn($dbConn);
+  close_conn($conn);
 
 
 }

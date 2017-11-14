@@ -9,7 +9,7 @@ include("controlador.php");
 $dbConn = conn();
 // consultar los datos
 consult($dbConn);
-// cerrar conexiíon
+// cerrar conexíon
 close_conn($dbConn);
 
 
