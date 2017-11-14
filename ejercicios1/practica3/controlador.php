@@ -1,22 +1,6 @@
 <?php
 
-  $servername = "localhost";
-  $username = "root";
-  $password = "root";
-  $dbname = "components_data";
 
-
-  $tabla_db1 = "components";
-
-
-  // create connection
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
-
-function close_conn(){
-  global $conn;
-  mysqli_close($conn);
-}
 // check connection
 
 // if ($conn->connect_error) {
@@ -28,9 +12,11 @@ function close_conn(){
 
 // consults
 
-function consult(){
-  global $conn;
+$tabla_db1 = "components";
+
+function consult($conn){
   global $tabla_db1;
+  $conn;
   $sql = "select * from $tabla_db1";
   $result = $conn->query($sql);
 
@@ -60,7 +46,7 @@ function consult(){
 
       $showComponents.= "</table>";
       echo $showComponents;
-      echo "<a  href=\"http://localhost/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a>";
+      echo "<a  href=\"http://127.0.0.1/dwes/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a>";
 
   } else {
       echo "0 results";
@@ -73,17 +59,16 @@ function test_input(&$data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
-
 }
 
-function add_component($type, $model, $price, $description){
-  global $conn;
+function add_component($conn, $type, $model, $price, $description){
+  $conn;
   global $tabla_db1;
 
-  $type = test_input($type);
-  $model = test_input($model);
-  $price = test_input($price);
-  $description = test_input($description);
+  test_input($type);
+  test_input($model);
+  test_input($price);
+  test_input($description);
 
   $sql = "INSERT INTO $tabla_db1 (Type, Model, Price, Description) VALUES ('$type', '$model', $price, '$description')";
 
