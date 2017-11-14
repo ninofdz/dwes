@@ -1,16 +1,18 @@
 <?php
 
+
+// creamos la variable para la tabla
 $tabla_db1 = "components";
 
+// funcion que consulta los datos de la base de datos
 function consult($conn){
   global $tabla_db1;
-  $conn;
   $sql = "select * from $tabla_db1";
   $result = $conn->query($sql);
 
-
+  // comprueba que el resultado de la query tenga más de 0 columnas
   if ($result->num_rows > 0) {
-      // output data of each row
+      // muestra los datos de la bd en una tabla
       $showComponents = "
     <center>
     <h1>Componentes</h1>
@@ -36,32 +38,36 @@ function consult($conn){
 
       $showComponents.= "</table></center>";
       echo $showComponents;
-      echo "<br><center><a  href=\"http://127.0.0.1/dwes/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a></center>";
+      echo "<br><center><a  href=\"http://localhost/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a></center>";
 
   } else {
+    // si no hay mas de 0 columnas muestra que no hay resultados
       echo "0 results";
   }
 }
 
-// add components
-
+// funcion para eliminar innecesarios caracteres, para eliminar barras invertidas y convertir
+// caracteres especiales en entidades HTML y asi evitar ataque SQL Injection
 function test_input(&$data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
 }
 
+// función para añadir componentes
 function add_component($conn, $type, $model, $price, $description){
-  $conn;
   global $tabla_db1;
 
+  // usa la funcion test input para limpiar los datos
   test_input($type);
   test_input($model);
   test_input($price);
   test_input($description);
 
+  // sentencia para insertar los datos a la tabla
   $sql = "INSERT INTO $tabla_db1 (Type, Model, Price, Description) VALUES ('$type', '$model', $price, '$description')";
 
+  // si se han insertado correctamente, redireccionará a la página principal
   if ($conn->query($sql) === TRUE) {
       header('location: index.php');
 

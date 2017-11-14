@@ -8,7 +8,7 @@ include("controlador.php");
 // abrir conexion
 $dbConn = conn();
 // consultar los datos
-consult($dbConn);
+modificar($dbConn);
 // cerrar conexiíon
 close_conn($dbConn);
 
