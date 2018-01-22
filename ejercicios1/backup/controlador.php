@@ -2,14 +2,12 @@
 
 
 // creamos la variable para la tabla
-$tabla_libros = "td_libros";
-$tabla_usuarios = "td_usuarios";
-
+$tabla_db1 = "components";
 
 // funcion que consulta los datos de la base de datos
 function consult($conn){
-  global $tabla_libros;
-  $sql = "select * from $tabla_libros";
+  global $tabla_db1;
+  $sql = "select * from $tabla_db1";
   $result = $conn->query($sql);
 
   // comprueba que el resultado de la query tenga más de 0 columnas
@@ -20,29 +18,29 @@ function consult($conn){
     <h1>Componentes</h1>
       <table border = \"1\" width = \"600\" height = \"150\">
         <tr>
-          <th>titulo</th>
-          <th>autor</th>
-          <th>genero</th>
-          <th>precio</th>
+          <th>Tipo</th>
+          <th>Modelo</th>
+          <th>Precio</th>
+          <th>Descripcion</th>
         </tr>";
 
       while($row = $result->fetch_assoc()) {
 
         $showComponents.=
         "<tr>
-          <td>".$row["titulo"]." </td>
-          <td>".$row["autor"]." </td>
-          <td>".$row["genero"]." </td>
-          <td>".$row["precio"]."</td>
+          <td>".$row["Type"]." </td>
+          <td>".$row["Model"]." </td>
+          <td>".$row["Price"]." </td>
+          <td>".$row["Description"]."</td>
         </tr>
         ";
       }
 
       $showComponents.= "</table></center>";
       echo $showComponents;
-      echo "<br><center><a  href=\"http://localhost/FERNANDEZ_ANTONIO/altas.php\"><button type=\"button\">Agregar</button></a>";
-      echo "<a  href=\"http://localhost/FERNANDEZ_ANTONIO/controlador_baja.php\"><button type=\"button\">Modificar</button></a>";
-      echo "<br><a  href=\"http://localhost/FERNANDEZ_ANTONIO/controlador_login.php?logout\"><button type=\"button\">Log out</button></a></center>";
+      echo "<br><center><a  href=\"http://localhost/ejercicios1/practica3/altas.php\"><button type=\"button\">Agregar</button></a>";
+      echo "<a  href=\"http://localhost/ejercicios1/practica3/controlador_baja.php\"><button type=\"button\">Modificar</button></a>";
+      echo "<br><a  href=\"http://localhost/ejercicios1/practica3/controlador_login.php?logout\"><button type=\"button\">Log out</button></a></center>";
 
 
   } else {
@@ -63,7 +61,7 @@ function test_input(&$data) {
 
 // función para añadir componentes
 function add_component($conn, $type, $model, $price, $description){
-  global $tabla_libros;
+  global $tabla_db1;
 
   // usa la funcion test input para limpiar los datos
   test_input($type);
@@ -72,7 +70,7 @@ function add_component($conn, $type, $model, $price, $description){
   test_input($description);
 
   // sentencia para insertar los datos a la tabla
-  $sql = "INSERT INTO $tabla_libros (Type, Model, Price, Description) VALUES ('$type', '$model', $price, '$description')";
+  $sql = "INSERT INTO $tabla_db1 (Type, Model, Price, Description) VALUES ('$type', '$model', $price, '$description')";
 
   // si se han insertado correctamente, redireccionará a la página principal
   if ($conn->query($sql) === TRUE) {
@@ -87,7 +85,7 @@ function add_component($conn, $type, $model, $price, $description){
 
 // función para modificar componentes
 function update_component($conn, $type, $model, $price, $description, $id){
-  global $tabla_libros;
+  global $tabla_db1;
 
   // usa la funcion test input para limpiar los datos
   test_input($type);

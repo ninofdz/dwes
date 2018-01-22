@@ -13,8 +13,8 @@ modificar($dbConn);
 // cerrar conexiíon
 
 function modificar($conn){
-  global $tabla_libros;
-  $sql = "select * from $tabla_libros";
+  global $tabla_db1;
+  $sql = "select * from $tabla_db1";
   $result = $conn->query($sql);
 
   // comprueba que el resultado de la query tenga más de 0 columnas
@@ -57,7 +57,7 @@ function modificar($conn){
   // Si se ha enviado el parametro drop, eliminará el registro con ese ID asociado
   if (isset($_GET['drop'])) {
     $id = $_GET['drop'];
-    $sqlDelete = "DELETE FROM $tabla_libros WHERE ID = '$id'";
+    $sqlDelete = "DELETE FROM $tabla_db1 WHERE ID = '$id'";
 
     //Ejecutar la consulta
     $resultadoDelete = $conn->query($sqlDelete);

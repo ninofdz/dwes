@@ -8,11 +8,11 @@ include("controlador.php");
 session_start();
 
 if (isset($_SESSION['user'])) {
-   abrir conexion
+  // abrir conexion
   $dbConn = conn();
-   consultar los datos
+  // consultar los datos
   consult($dbConn);
-  cerrar conexíon
+  // cerrar conexíon
   close_conn($dbConn);
 } else {
   include("pantalla_login.php");

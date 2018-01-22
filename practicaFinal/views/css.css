@@ -6,3 +6,12 @@
   width: 60px;
   height: 60px;
 }
+
+.img-fluid {
+  max-width: 100%;
+  height: auto
+}
+
+.hola{
+  height: 227px;
+}
