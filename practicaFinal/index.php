@@ -4,6 +4,7 @@ require_once("db/db.php");
 require_once("controllers/personas_controller.php");
 require_once("controllers/coches_controller.php");
 require_once("controllers/login_controller.php");
+require_once("controllers/home_controller.php");
 
 if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
@@ -82,7 +83,7 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
     }
 
 } else {
-   $controller = new login_controller();
+   $controller = new home_controller();
    $controller->view();
 }
 ?>
