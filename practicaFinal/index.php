@@ -5,7 +5,6 @@ require_once("controllers/personas_controller.php");
 require_once("controllers/coches_controller.php");
 require_once("controllers/login_controller.php");
 
-
 if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
     if ($_GET['controller'] == "personas") {

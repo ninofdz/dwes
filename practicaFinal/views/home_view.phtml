@@ -11,12 +11,14 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css.css">
   <!--<script src="https://use.fontawesome.com/fd4530cf2.js"></script>-->
+<script type="text/javascript">
 
+</script>
 </head>
 
 <body>
 
-  <div class="bg-secondary">
+  <div class="bg-grisOscuro">
     <div class="container">
       <nav class="navbar navbar-expand  navbar-light">
 
@@ -40,38 +42,98 @@
   <div class="container">
 
 
-    <div class="row">
+    <!-- Bootstrap row -->
+    <div class="row" id="body-row">
+      <!-- Sidebar -->
+      <div id="sidebar-container" class="sidebar-expanded d-none d-md-block col-2">
+        <!-- d-* hiddens the Sidebar in smaller devices. Its itens can be kept on the Navbar 'Menu' -->
+        <!-- Bootstrap List Group -->
+        <ul class="list-group">
+          <!-- Separator with title -->
+          <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>MAIN MENU</small>
+          </li>
+          <!-- /END Separator -->
+          <!-- Menu with submenu -->
+          <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-grisa list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-dashboard fa-fw mr-3"></span>
+              <span class="menu-collapsed text-dark">Ordenadores</span>
+              <span class="submenu-icon ml-auto"></span>
+            </div>
+          </a>
+          <!-- Submenu content -->
+          <div id='submenu1' class="collapse sidebar-submenu">
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Portátiles</span>
+                </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Gaming</span>
+                </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Sobremesa</span>
+                </a>
+          </div>
+          <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-user fa-fw mr-3"></span>
+              <span class="menu-collapsed">Componentes</span>
+              <span class="submenu-icon ml-auto"></span>
+            </div>
+          </a>
+          <!-- Submenu content -->
+          <div id='submenu2' class="collapse sidebar-submenu">
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Procesadores</span>
+                </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Tarjetas gráficas</span>
+                </a>
+          </div>
+          <!-- fin submenu content -->
+          <a href="#submenu3" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-tasks fa-fw mr-3"></span>
+              <span class="menu-collapsed">Periféricos</span>
+              <span class="submenu-icon ml-auto"></span>
+            </div>
+          </a>
 
-      <!-- categorias -->
-      <div class="col-2 col-md-2">
-        <div class="col-0 collapse d-md-flex bg-success pt-2 h-100" id="sidebar">
-          <ul class="nav flex-column flex-nowrap">
-            <li class="nav-item">
-              <a class="nav-link collapsed" data-toggle="collapse" data-target="#submenu1" href="#"> <i class="fa fa-fw fa-clock-o"></i>Componentes</a>
-              <div class="collapse" id="submenu1" aria-expanded="false">
-                <ul class="flex-column pl-2 nav">
-                  <li class="nav-item"><a class="nav-link" href="">Tarjetas gráficas</a></li>
-                  <li class="nav-item"><a class="nav-link" href="">Procesadores</a></li>
+          <!-- Submenu content -->
+          <div id='submenu3' class="collapse sidebar-submenu">
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Teclados</span>
+                </a>
+            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">Monitores</span>
+                </a>
+          </div>
 
-                </ul>
-              </div>
-              <li class="nav-item">
-                <a class="nav-link collapsed" href="#submenu1" data-toggle="collapse" data-target="#submenu2">Periféricos</a>
-                <div class="collapse" id="submenu2" aria-expanded="false">
-                  <ul class="flex-column pl-2 nav">
-                    <li class="nav-item"><a class="nav-link" href="">Monitores</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Teclados</a></li>
+          <!-- Separator with title -->
+          <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            <small>Mi perfil</small>
+          </li>
+          <!-- /END Separator -->
+          <a href="#" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-calendar fa-fw mr-3"></span>
+              <span class="menu-collapsed">Perfil</span>
+            </div>
+          </a>
+          <a href="#" class="bg-dark list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-start align-items-center">
+              <span class="fa fa-envelope-o fa-fw mr-2"></span>
+              <span class="menu-collapsed">Administrar <span class="badge badge-pill badge-primary ml-2">5</span></span>
+            </div>
+          </a>
 
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item"><a class="nav-link" href="#">Ordenadores</a></li>
-          </ul>
-        </div>
+
+        </ul>
+        <!-- List Group END-->
       </div>
+      <!-- sidebar-container END -->
 
-
-      <div class="col-10 col-md-10 hola">
+      <div class="p-0 col-10 col-md-10 hola">
         <div id="demo" class="carousel slide" data-ride="carousel">
           <ul class="carousel-indicators">
             <li data-target="#demo" data-slide-to="0" class="active"></li>
@@ -87,7 +149,7 @@
               </div>
             </div>
             <div class="carousel-item">
-              <img src="../imgs/p2.png" alt="Chicago" class="img-fluid bg-success hola" style="width:100%;">
+              <img src="../imgs/p2.png" alt="Chicago" class="img-fluid bg-dark hola" style="width:100%;">
               <div class="carousel-caption">
                 <h3>Chicago</h3>
                 <p>Thank you, Chicago!</p>
@@ -102,18 +164,38 @@
             </div>
           </div>
           <a class="carousel-control-prev" href="#demo" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </a>
+      <span class="carousel-control-prev-icon"></span>
+    </a>
           <a class="carousel-control-next" href="#demo" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </a>
+      <span class="carousel-control-next-icon"></span>
+    </a>
         </div>
       </div>
 
+      <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card card-inverse card-info">
+          <img class="card-img-top" src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif">
+          <div class="card-block">
+            <figure class="profile">
+              <img src="http://success-at-work.com/wp-content/uploads/2015/04/free-stock-photos.gif" class="profile-avatar" alt="">
+            </figure>
+            <h4 class="card-title mt-3">Tawshif Ahsan Khan</h4>
+            <div class="meta card-text">
+              <a>Friends</a>
+            </div>
+            <div class="card-text">
+              Tawshif is a web designer living in Bangladesh.
+            </div>
+          </div>
+          <div class="card-footer">
+            <small>Last updated 3 mins ago</small>
+            <button class="btn btn-info float-right btn-sm">Follow</button>
+          </div>
+        </div>
+      </div>
 
     </div>
 
-  </div>
 
 </body>
 
