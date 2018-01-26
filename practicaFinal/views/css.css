@@ -19,7 +19,15 @@
 }
 
 .hola{
-  height: 227px;
+  height: 247px;
+}
+
+.card-block > h4{
+font-size: 12px;
+}
+
+.minimo{
+  pa
 }
 
 
@@ -46,7 +54,7 @@
 }
 
 .bg-grisOscuro{
-  background-color: #D2D4D6;
+  background-color: #36626A;
 }
 
 #body-row {
@@ -398,4 +406,54 @@ h5 {
     padding-top: 5px !important;
     padding-bottom: 5px !important;
     padding-left: 10px !important;
+}
+
+/* categorias */
+
+.caret-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+.dropdown-mega {
+    min-width: 700px;
+    padding: 10px 20px;
+}
+.dropdown-mega--menu-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #666;
+}
+.dropdown-mega--menu {
+    padding: 0;
+
+    li {
+        list-style: none;
+
+        > a:link, > a:visited {
+            padding: 5px 0;
+            color: #666;
+            display: block;
+            width: 100%;
+        }
+
+        > a:hover {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        p {
+            font-size: 0.6em;
+            color: #ddd;
+        }
+    }
 }
