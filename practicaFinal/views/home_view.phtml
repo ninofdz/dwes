@@ -83,7 +83,7 @@
 
 
 
-    <div id="demo" class="carousel slide" data-ride="carousel">
+    <div id="demo" class="carousel slide mt-2" data-ride="carousel">
       <ul class="carousel-indicators">
         <li data-target="#demo" data-slide-to="0" class="active"></li>
         <li data-target="#demo" data-slide-to="1"></li>
@@ -143,9 +143,12 @@
             <div class="card-footer">
               <small> <?php
 
-              if ($dato['STOCK'] > 5) { ?>
-              <span style="color:orange"> <?php echo "Quedan pocos en stock";}
-              ?></span>
+              if ($dato['STOCK'] == 0) { ?>
+              <span style="color:red"> <?php echo "No quedan productos"; ?></span>
+              <?php
+            } elseif ($dato['STOCK'] < 5) { ?>
+                  <span style="color:orange"> <?php echo "Quedan pocos en stock"; ?></span>
+            <?php } ?>
 
             </small>
 
