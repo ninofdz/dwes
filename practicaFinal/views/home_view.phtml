@@ -16,6 +16,12 @@
 </head>
 
 <body>
+    
+    <?php
+        if(!empty($loginFailed)){
+            echo $loginFailed['openModel'];
+        }
+    ?>
 
   <nav class="navbar navbar-expand  navbar-light bg-grisOscuro">
 
@@ -95,6 +101,11 @@
                            type='text' name="password" class='form-control' id='password'
                            placeholder='Enter password' />
                   </div>
+                    <?php 
+                    if(!empty($loginFailed)){
+                        echo "<span>{$loginFailed['message']}</span>";
+                    }
+                    ?>
                   <button class='btn btn-default btn-primary btn-block'
                           onClick={this.login} >
                     <span class='glyphicon glyphicon-off'></span> Login
