@@ -32,8 +32,10 @@ class login_model{
   * Extreu tots els usuaris de la taula
   * @return array Bidimensional de tots els usuaris de la taula
   */
-  public function con_usuarios(){
-      $consulta=("SELECT * FROM usuarios WHERE usuario ='{$this->usuario}' AND password = '{$this->password}';");
+  public function verifyUser(){
+
+      $encriptada = crypt($this->password,'$3$rounds=5000$contraseña$');
+      $consulta= "SELECT * FROM user WHERE USERNAME ='{$this->usuario}' AND PASSWORD = '{$encriptada}';";
        $resultado = $this->db->query($consulta) or trigger_error(mysqli_error($this->db)." ".$consulta);
        if ($resultado->num_rows > 0) {
        while($row=$resultado->fetch_assoc()){

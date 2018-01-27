@@ -92,12 +92,18 @@ public function setCategory($category) {
 * Extreu totes les persones de la taula
 * @return array Bidimensional de totes les persones
 */
-public function get_products(){
-    $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE SPONSORED = 'Y';");
+public function get_products($subCategory){
+
+    if (!empty($subCategory)) {
+      $query = "SELECT * FROM PRODUCT WHERE CATEGORY = {$subCategory};";
+  }else{
+    $query = "SELECT * FROM PRODUCT WHERE SPONSORED = 'Y';";
+  }
+
+    $consulta=$this->db->query($query);
     while($filas=$consulta->fetch_assoc()){
         $this->products[]=$filas;
     }
-    return $this->products;
-}
+    return $this->products;  }
 }
 ?>

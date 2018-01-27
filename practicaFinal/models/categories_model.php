@@ -36,7 +36,7 @@ public function getParentCategory() {
   return $this->$parentCategory;
 }
 
-public function getParentCategory($parentCategory) {
+public function setParentCategory($parentCategory) {
   $this->$parentCategory = $parentCategory;
 }
 
@@ -52,13 +52,19 @@ public function get_categories(){
 
     while($filas=$consulta->fetch_assoc()){
         $this->categories[]=$filas;
-        echo "<pre>" print_r($filas, 1) "</pre>";
-        die;
     }
-    return $this->$categories;
+    return $this->categories;
 }
 
+public function lista_categorias(){
+    $consulta=$this->db->query("SELECT * FROM CATEGORY;");
 
+
+    while($filas=$consulta->fetch_assoc()){
+        $this->categories[]=$filas;
+    }
+    return $this->categories;
+}
 
 
 }

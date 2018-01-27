@@ -17,6 +17,7 @@
 
 <body>
 
+
   <nav class="navbar navbar-expand  navbar-light bg-grisOscuro">
 
     <img src="views/logo1.png" class="img-logo mr-1" alt="">
@@ -47,7 +48,7 @@
                             $idSubCategory = $subcategoria['ID'];
                             $nameSubCategory = $subcategoria['NAME'];
                             ?>
-                <a href="?subCategory=<?php echo $idSubCategory ?>" class="list-group-item list-group-item-action" id="<?php echo $idSubCategory ?>">
+                <a href="localhost/dwes/practicaFinal/index.php?controller=categories&action=mostrarLista&id=<?php echo $idSubCategory ?>" class="list-group-item list-group-item-action" id="<?php echo $idSubCategory ?>">
                   <?php echo $nameSubCategory ?> </a>
 
                 <?php } ?> </div>
@@ -69,96 +70,36 @@
 
 
 
-    <!-- inicio login -->
-    <a href="#" class='btn btn-primary' data-toggle="modal" data-target="#loginModal">LOGIN</a>
+    <span>Account</span>
+    <i class="fa fa-user-circle fa-2x mr-2 ml-2" aria-hidden="true"></i>
 
-        <div class='modal fade' id='loginModal' role='dialog'>
-          <div class='modal-dialog'>
-            <div class='modal-content'>
-              <div class='modal-header'>
-                <form class="" action="index.php?action=login" method="post">
-
-                <button type='button' class='close' data-dismiss='modal'>&times;</button>
-                <h4><span class='glyphicon glyphicon-lock'></span>Login</h4>
-              </div>
-              <div class='modal-body'>
-                <div>
-                  <div class='form-group'>
-                    <label htmlFor='username'><span class='glyphicon glyphicon-user'></span></label>
-                    <input type='text' name="username" class='form-control' id='username'
-                           placeholder='Enter user' />
-                  </div>
-                  <div class='form-group'>
-                    <label htmlFor='password'><span class='glyphicon glyphicon-eye-open'></span></label>
-                    <input
-                           onChange={this.onPasswordChange.bind(this)}
-                           type='text' name="password" class='form-control' id='password'
-                           placeholder='Enter password' />
-                  </div>
-                  <button class='btn btn-default btn-primary btn-block'
-                          onClick={this.login} >
-                    <span class='glyphicon glyphicon-off'></span> Login
-                  </button>
-                </div>
-              </div>
-              <div class='modal-footer'>
-                <button type='submit' class='btn btn-danger pull-left' data-dismiss='modal'>
-                </form>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-  <!-- fin login -->
-
-
-      <i class="fa fa-user-circle fa-2x mr-2 ml-2" aria-hidden="true" ></i>
-
-      <!-- carrito -->
-
-      <a href="#" class="text-light" data-toggle="modal" data-target="#myModal2">
+    <li class="dropdown my">
+      <a href="#" class="text-light" data-toggle="dropdown" role="button" aria-expanded="false">
             <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
             <span class="badge badge-dark">4</span>
         </a>
+      <ul class="dropdown-menu dropdown-cart" role="menu">
+        <?php for ($i = 0; $i < 6; $i++) { ?>
+        <li>
+          <span class="item">
+                        <span class="item-left">
+                            <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                            <span class="item-info">
+                                <span>Item name</span>
+          <span>price: 27$</span>
+          </span>
+          </span>
+          <span class="item-right">
+                            <button class="btn btn-danger  fa fa-close"></button>
+                        </span>
+          </span>
+        </li>
+        <?php } ?>
 
-        <!-- Modal -->
-        <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-
-              <div class="modal-header ">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title float-left" id="myModalLabel2">Carrito de la compra</h4>
-              </div>
-
-              <?php for ($i = 0; $i < 6; $i++) { ?>
-              <li>
-                <span class="item">
-                                <span class="item-left">
-                                    <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
-                                    <span class="item-info">
-                                        <span>Item name</span>
-                <span>price: 27$</span>
-                </span>
-                </span>
-                <span class="item-right">
-                                    <button class="btn btn-danger  fa fa-close"></button>
-                                </span>
-                </span>
-              </li>
-              <?php } ?>
-
-            </div>
-            <!-- modal-content -->
-          </div>
-          <!-- modal-dialog -->
-        </div>
-        <!-- modal -->
-
-
+        <li class="divider"></li>
+        <li><a class="text-center" href="#">View Cart</a></li>
+      </ul>
+    </li>
 
   </nav>
 
@@ -177,6 +118,39 @@
         </button>
     </div>
 
+    <!-- Modal -->
+    <div class="modal left fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header ">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Left Sidebar</h4>
+          </div>
+
+          <?php for ($i = 0; $i < 6; $i++) { ?>
+          <li>
+            <span class="item">
+                            <span class="item-left">
+                                <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                                <span class="item-info">
+                                    <span>Item name</span>
+            <span>price: 27$</span>
+            </span>
+            </span>
+            <span class="item-right">
+                                <button class="btn btn-danger  fa fa-close"></button>
+                            </span>
+            </span>
+          </li>
+          <?php } ?>
+
+        </div>
+        <!-- modal-content -->
+      </div>
+      <!-- modal-dialog -->
+    </div>
+    <!-- modal -->
 
     <!-- Modal -->
     <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">

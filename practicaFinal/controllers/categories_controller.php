@@ -27,5 +27,18 @@ function view() {
   //Llamado a la vista: mostrar la pantalla
   require_once("views/home_view.phtml");
 }
+
+function mostrarLista($id){
+
+  $lista = array();
+
+  $consulta=$this->db->query("SELECT * FROM PRODUCT WHERE CATEGORY = {$id};");
+  while($filas=$consulta->fetch_assoc()){
+    $lista[]=$filas;
+  }
+  return $lista;
+
+}
+
 }
  ?>

@@ -26,6 +26,17 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
          }
     }
 
+    if ($_GET['controller'] == "categories") {
+
+         if ($_GET['action'] == "mostrarLista") {
+           $id = $_GET['id'];
+           $controller = new categories_controller();
+           $products = $controller->mostrarLista($id);
+
+           $controller-> view();
+         }
+    }
+
     if ($_GET['controller'] == "coches") {
 
       if ($_GET['action'] == "view") {
@@ -68,7 +79,28 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
     }
 
 } else {
-   $controller = new products_controller();
-   $controller->view();
+
+  $controller = new home_controller();
+
+  if (!empty($_GET['action']))) {
+    if ($_GET['action'] == "login") {
+       $login = new login_controller();
+       $loged = $login -> login();
+       if ($loged) {
+
+       } else {
+         $login -> 
+          }
+        }
+  }
+
+
+
+
+$subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
+$controller->view($subCategory);
+
+
+
 }
 ?>
