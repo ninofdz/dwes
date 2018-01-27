@@ -7,6 +7,9 @@
   height: 60px;
 }
 
+.navbar{
+  border-top: 0px solid red;
+}
 
 .prueba{
   margin-left: 0;
@@ -30,6 +33,9 @@ font-size: 12px;
   pa
 }
 
+.my{
+  list-style-type: none;
+}
 
 
 /* colors */
@@ -366,48 +372,6 @@ h5 {
     color: rgba(0, 0, 0, .87);
 }
 
-/* colapse */
-
-.panel-group{
-    border-radius: 0 !important;
-    /*border: 1px solid #074f68;*/
-    box-shadow: 1px 1px 3px #074f68;
-    font-family: "Roboto",sans-serif !important;
-}
-.panel{
-
-   border-radius: 0 !important;
-   font-family: "Roboto",sans-serif !important;
-
-}
-.panel-default{
- border-radius: 0!important;
-
-}
-.panel-heading{
-   border-radius: 0!important;
-}
-.panel-body{
-
-    padding-top: 2px !important;
-    padding-bottom: 0px !important;
-    padding-left: 15px !important;
-    font-size: 1.2em;
-
-
-}
-.panel-body ul{
-
- margin-top: 2px;
- margin-bottom: 2px;
-}
-
-.panel-body ul li{
-
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
-    padding-left: 10px !important;
-}
 
 /* categorias */
 
@@ -457,4 +421,231 @@ h5 {
             color: #ddd;
         }
     }
+}
+
+/* eneko */
+
+.bigicon {
+    color:white;
+}
+
+.mix{
+    min-height:370px;
+}
+
+ul.dropdown-cart{
+    min-width:210px;
+    border: 2px solid #343434;
+    padding: 2px;
+    margin: -10px;
+    margin-top: 14px;
+    margin-bottom: auto;
+}
+ul.dropdown-cart li .item{
+    display:block;
+    padding:3px 10px;
+    margin: 3px 0;
+
+}
+ul.dropdown-cart li .item:hover{
+    background-color:#c3c5c5;
+
+}
+ul.dropdown-cart li .item:after{
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+ul.dropdown-cart li .item-left{
+    float:left;
+}
+ul.dropdown-cart li .item-left img,
+ul.dropdown-cart li .item-left span.item-info{
+    float:left;
+}
+ul.dropdown-cart li .item-left span.item-info{
+    margin-left:10px;
+}
+ul.dropdown-cart li .item-left span.item-info span{
+    display:block;
+}
+ul.dropdown-cart li .item-right{
+    float:right;
+}
+ul.dropdown-cart li .item-right button{
+    margin-top:14px;
+}
+
+#cardBody	{ -	ms-flex:none;
+			flex: none;
+			padding:1.25rem }
+
+.modal-content li {
+  margin-left: 10px;
+  list-style-type: none;
+}
+
+/* shopping 1 */
+
+.table>tbody>tr>td, .table>tfoot>tr>td{
+    vertical-align: middle;
+}
+
+.table>tbody>tr>td,
+.table>tfoot>tr>td {
+  vertical-align: middle;
+}
+
+@media screen and (max-width: 600px) {
+  table#cart tbody td .form-control {
+    width: 20%;
+    display: inline !important;
+  }
+  .actions .btn {
+    width: 36%;
+    margin: 1.5em 0;
+  }
+  .actions .btn-info {
+    float: left;
+  }
+  .actions .btn-danger {
+    float: right;
+  }
+  table#cart thead {
+    display: none;
+  }
+  table#cart tbody td {
+    display: block;
+    padding: .6rem;
+    min-width: 320px;
+  }
+  table#cart tbody tr td:first-child {
+    background: #333;
+    color: #fff;
+  }
+  table#cart tbody td:before {
+    content: attr(data-th);
+    font-weight: bold;
+    display: inline-block;
+    width: 8rem;
+  }
+  table#cart tfoot td {
+    display: block;
+  }
+  table#cart tfoot td .btn {
+    display: block;
+  }
+}
+
+/* sidebar */
+
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+	.modal.left .modal-dialog,
+	.modal.right .modal-dialog {
+		position: fixed;
+		margin: auto;
+		width: 320px;
+		height: 100%;
+		-webkit-transform: translate3d(0%, 0, 0);
+		    -ms-transform: translate3d(0%, 0, 0);
+		     -o-transform: translate3d(0%, 0, 0);
+		        transform: translate3d(0%, 0, 0);
+	}
+
+	.modal.left .modal-content,
+	.modal.right .modal-content {
+		height: 100%;
+		overflow-y: auto;
+	}
+
+	.modal.left .modal-body,
+	.modal.right .modal-body {
+		padding: 15px 15px 80px;
+	}
+
+/*Left*/
+	.modal.left.fade .modal-dialog{
+		left: -320px;
+		-webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+		        transition: opacity 0.3s linear, left 0.3s ease-out;
+	}
+
+	.modal.left.fade.in .modal-dialog{
+		left: 0;
+	}
+
+/*Right*/
+	.modal.right.fade .modal-dialog {
+		right: -0px;
+		-webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+		   -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+		     -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+		        transition: opacity 0.3s linear, right 0.3s ease-out;
+	}
+
+	.modal.right.fade.in .modal-dialog {
+		right: 0;
+	}
+
+/* ----- MODAL STYLE ----- */
+	.modal-content {
+		border-radius: 0;
+		border: none;
+	}
+
+	.modal-header {
+		border-bottom-color: #EEEEEE;
+		background-color: #FAFAFA;
+	}
+
+/* ----- v CAN BE DELETED v ----- */
+body {
+	background-color: #78909C;
+}
+
+.demo {
+	padding-top: 60px;
+	padding-bottom: 110px;
+}
+
+.btn-demo {
+	margin: 15px;
+	padding: 10px 15px;
+	border-radius: 0;
+	font-size: 16px;
+	background-color: #FFFFFF;
+}
+
+.btn-demo:focus {
+	outline: 0;
+}
+
+.demo-footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	padding: 15px;
+	background-color: #212121;
+	text-align: center;
+}
+
+.demo-footer > a {
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 16px;
+	color: #fff;
+}
+
+.close{
+  margin: -12px !important;
 }

@@ -67,16 +67,117 @@
       <input class="form-control" type="text" placeholder="Search">
     </form>
 
+
+
     <span>Account</span>
     <i class="fa fa-user-circle fa-2x mr-2 ml-2" aria-hidden="true"></i>
-    <span>My order </span>
-    <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+
+    <li class="dropdown my">
+          <a href="#" class="text-light" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+            <span class="badge badge-dark">4</span>
+          </a>
+          <ul class="dropdown-menu dropdown-cart" role="menu">
+            <?php for ($i=0; $i < 6 ; $i++) { ?>
+              <li>
+                  <span class="item">
+                    <span class="item-left">
+                        <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                        <span class="item-info">
+                            <span>Item name</span>
+                            <span>price: 27$</span>
+                        </span>
+                    </span>
+                    <span class="item-right">
+                        <button class="btn btn-danger  fa fa-close"></button>
+                    </span>
+                </span>
+              </li>
+              <?php    } ?>
+
+              <li class="divider"></li>
+              <li><a class="text-center" href="#">View Cart</a></li>
+          </ul>
+        </li>
+
   </nav>
 
 
 
 
 <div class="bg-grisa myDiv">
+
+  <div class="text-center">
+      <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal">
+        Left Sidebar Modal
+      </button>
+
+      <button type="button" class="btn btn-demo" data-toggle="modal" data-target="#myModal2">
+        Right Sidebar Modal
+      </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal left fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header ">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Left Sidebar</h4>
+          </div>
+
+          <?php for ($i=0; $i < 6 ; $i++) { ?>
+            <li>
+                <span class="item">
+                  <span class="item-left">
+                      <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                      <span class="item-info">
+                          <span>Item name</span>
+                          <span>price: 27$</span>
+                      </span>
+                  </span>
+                  <span class="item-right">
+                      <button class="btn btn-danger  fa fa-close"></button>
+                  </span>
+              </span>
+            </li>
+            <?php    } ?>
+
+        </div><!-- modal-content -->
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
+
+    <!-- Modal -->
+    <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header ">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title float-left" id="myModalLabel2">Carrito de la compra</h4>
+          </div>
+
+          <?php for ($i=0; $i < 6 ; $i++) { ?>
+            <li>
+                <span class="item">
+                  <span class="item-left">
+                      <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                      <span class="item-info">
+                          <span>Item name</span>
+                          <span>price: 27$</span>
+                      </span>
+                  </span>
+                  <span class="item-right">
+                      <button class="btn btn-danger  fa fa-close"></button>
+                  </span>
+              </span>
+            </li>
+            <?php    } ?>
+
+        </div><!-- modal-content -->
+      </div><!-- modal-dialog -->
+    </div><!-- modal -->
 
 
   <div class="container text-center">
@@ -134,7 +235,7 @@
               </figure>
               <h4 class="card-title mt-3"><?php echo $dato['SHORTDESCRIPTION'] ?></h4>
               <div class="meta">
-                <a>Friends</a>
+                <a></a>
               </div>
               <div class="card-text">
                 <?php echo $dato['PRICE'] ?>
@@ -161,7 +262,18 @@
 
       </div>
     </div>
+
+
+  <!-- cierro div container -->
   </div>
+
+
+  <!-- sidebar -->
+
+
+
+<!-- cierro div bg -->
+</div>
 
 
 

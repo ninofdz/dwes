@@ -5,6 +5,7 @@ require_once("controllers/personas_controller.php");
 require_once("controllers/products_controller.php");
 require_once("controllers/login_controller.php");
 require_once("controllers/home_controller.php");
+require_once("controllers/products_controller.php");
 
 if (isset($_GET['controller']) && isset($_GET['action']) ) {
 
@@ -14,10 +15,17 @@ if (isset($_GET['controller']) && isset($_GET['action']) ) {
            $controller = new products_controller();
            $controller->view();
          }
-
-
-
     }
+
+
+    if ($_GET['controller'] == "categories") {
+
+         if ($_GET['action'] == "view") {
+           $controller = new categories_controller();
+           $controller->view();
+         }
+    }
+
     if ($_GET['controller'] == "coches") {
 
       if ($_GET['action'] == "view") {
