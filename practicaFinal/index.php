@@ -16,7 +16,8 @@ if (empty($_SESSION['usuario'])) {
 }
 
 $cart = new cart_controller();
-$cart->shoppingCart();
+$userCart = $cart->shoppingCart();
+
 
 if (isset($_GET['controller']) && isset($_GET['action'])) {
 
@@ -34,14 +35,10 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $_SESSION['usuario'] = "invitado";
         }
 
-        $controller->view("", $loginFailed);
+        $controller->view($userCart, "", $loginFailed);
     }
 
-
-
-
-
-    if (!$_SESSION['usuario'] == "admin") {
+    if ($_SESSION['usuario'] != "admin") {
         $controller = new home_controller();
 
         if ($_GET['controller'] == "cart") {
@@ -55,13 +52,8 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 
             }
         }
-        $controller->view("", $loginFailed);
+        $controller->view($userCart);
     }
-
-
-
-
-
 
 
     if ($_GET["controller"] == "home") {
@@ -70,6 +62,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         }
     }
 
+    
 
     if ($_GET['controller'] == "products") {
 
@@ -130,6 +123,6 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 
     $controller = new home_controller();
     $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    $controller->view($subCategory, $loginFailed);
+    $controller->view($userCart);
 }
 ?>

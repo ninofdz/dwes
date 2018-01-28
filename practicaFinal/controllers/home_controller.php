@@ -2,13 +2,17 @@
 require_once("models/categories_model.php");
 require_once("models/products_model.php");
 
+
 class home_controller {
 
-    function view($subCategory,$loginFailed) {
+    function view($cart, $subCategory = "",$loginFailed = "") {
 
         $data = array();
         $data['products'] = $this->getProducts($subCategory);
         $data['categories'] = $this->getCategories();
+        $data['cart'] = $cart;
+        //echo "<pre>" .print_r($data['cart'],1). "</pre>";
+        //die();
 
         require_once("views/home_view.phtml");
     }

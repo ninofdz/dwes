@@ -9,8 +9,13 @@ class cart_controller {
         $product  = new products_model();
         
         $data = $product->get_shopping_cart();
-        //echo "<pre>" .print_r($data,1). "</pre>";
-        //die();
+        
+        foreach ($data as $key => $producto ){
+            $nUnits = $_SESSION['cart'][$producto["ID"]];
+            $data[$key]["nUnits"] = $nUnits;
+        }
+
+        return $data;
     }
     
     public function addItemToCart($id, $nUnits=1){
