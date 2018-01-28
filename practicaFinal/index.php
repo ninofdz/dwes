@@ -35,7 +35,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $_SESSION['usuario'] = "invitado";
         }
 
-        $controller->view($userCart, "", $loginFailed);
+        $controller->view($userCart, $loginFailed);
     }
 
     if ($_SESSION['usuario'] != "admin") {
@@ -68,9 +68,12 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 
         if ($_GET['action'] == "view") {
             $controller = new products_controller();
-            $controller->view();
+            $id = $_GET['subCategory'];
+            $subCategory = $controller -> getProducts($id);
+            $controller->view($subCategory);
         }
     }
+    
 
 
     if ($_GET['controller'] == "categories") {
@@ -92,6 +95,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         }
     }
 
+    /*
     if ($_GET['controller'] == "coches") {
 
         if ($_GET['action'] == "view") {
@@ -118,11 +122,11 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $controller = new coches_controller();
             $controller->ordmarca();
         }
-    }
+      */
+     
 } else {
 
     $controller = new home_controller();
-    $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
     $controller->view($userCart);
 }
 ?>

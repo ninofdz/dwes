@@ -97,8 +97,10 @@ class products_model {
      * Extreu totes les persones de la taula
      * @return array Bidimensional de totes les persones
      */
-    public function get_products($subCategory) {
+    public function get_products($subCategory="") {
 
+        echo "<pre>" .print_r($subCategory,1)."</pre>";
+        //die();
         if (!empty($subCategory)) {
             $query = "SELECT * FROM PRODUCT WHERE CATEGORY = {$subCategory};";
         } else {

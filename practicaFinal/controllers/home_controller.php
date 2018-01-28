@@ -5,10 +5,10 @@ require_once("models/products_model.php");
 
 class home_controller {
 
-    function view($cart, $subCategory = "",$loginFailed = "") {
+    function view($cart, $loginFailed = "") {
 
         $data = array();
-        $data['products'] = $this->getProducts($subCategory);
+        $data['products'] = $this->getProducts();
         $data['categories'] = $this->getCategories();
         $data['cart'] = $cart;
         //echo "<pre>" .print_r($data['cart'],1). "</pre>";
@@ -17,10 +17,10 @@ class home_controller {
         require_once("views/home_view.phtml");
     }
 
-    function getProducts($subCategory) {
+    function getProducts() {
 
         $products = new products_model();
-        return $products->get_products($subCategory);
+        return $products->get_products();
     }
 
     function getCategories() {
