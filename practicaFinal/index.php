@@ -80,21 +80,26 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 } else {
 
     $controller = new home_controller();
+    $loginFailed = "";
 
     if (!empty($_GET['action'])) {
         if ($_GET['action'] == "login") {
             $login = new login_controller();
             $loged = $login->login();
-            if ($loged) {
-                
-            } else {
+            if (!$loged) {
                 $loginFailed = $login->loginFailed();
+            }
+        }
+        
+        if ($_GET['action'] == "logout"){
+            if (session_status() == PHP_SESSION_ACTIVE) {
+                session_destroy();
             }
         }
     }
 
 
     $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    $controller->view($subCategory);
+    $controller->view($subCategory,$loginFailed);
 }
 ?>

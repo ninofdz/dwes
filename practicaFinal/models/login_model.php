@@ -34,8 +34,11 @@ class login_model{
   */
   public function verifyUser(){
 
-      $encriptada = crypt($this->password,'$3$rounds=5000$contraseña$');
+      $encriptada = crypt($this->password,'$4$rounds=5000$contraseña$');
+      //die($encriptada);
+
       $consulta= "SELECT * FROM user WHERE USERNAME ='{$this->usuario}' AND PASSWORD = '{$encriptada}';";
+
        $resultado = $this->db->query($consulta) or trigger_error(mysqli_error($this->db)." ".$consulta);
        if ($resultado->num_rows > 0) {
        while($row=$resultado->fetch_assoc()){

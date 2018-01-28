@@ -4,14 +4,12 @@ require_once("models/products_model.php");
 
 class home_controller {
 
-    function view($subCategory) {
+    function view($subCategory,$loginFailed) {
 
         $data = array();
         $data['products'] = $this->getProducts($subCategory);
         $data['categories'] = $this->getCategories();
 
-        $loginFailed = $this->login_failed();
-        
         require_once("views/home_view.phtml");
     }
 
@@ -61,16 +59,6 @@ class home_controller {
         }
         // echo "<pre>".print_r($orderedCategories, 1)."</pre>";
         return $orderedCategories;
-    }
-
-    function login_failed(){
-
-       $modalLogin = "<script type='text/javascript'>
-         $(document).ready(function(){
-         $('#loginModal').modal('show');
-         });
-         </script>";
-
     }
 
 }

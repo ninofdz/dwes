@@ -17,14 +17,15 @@ class login_controller {
 
         if ($ok) {
             session_start();
-            $_SESSION['usuario'] = $_POST['usuario'];
+            $_SESSION['usuario'] = $username;
+            return true;
         } else {
             return false;
         }
     }
 
     function loginFailed() {
-        $obj = [];
+        $obj = array();
         $obj['message'] = "Mecaogentuputuamadreeeeenoestasregistrao";
         $obj['openModel'] = "<script type='text/javascript'>
          $(document).ready(function(){
