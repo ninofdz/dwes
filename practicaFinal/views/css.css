@@ -2,6 +2,7 @@
   icons
 */
 
+
 .img-logo{
   width: 60px;
   height: 60px;
@@ -16,26 +17,32 @@
   margin-right: 0;
 }
 
+
 .img-fluid {
   max-width: 100%;
-  height: auto
+  height: auto;
 }
 
-.hola{
-  height: 247px;
+.carousel-caption{
+  height: 223px !important;
+  top: 0px !important;
+  padding: 0 !important;
+  width: 1100px !important;
+  left: 4px !important;
 }
+
+
+
 
 .card-block > h4{
 font-size: 12px;
 }
 
-.minimo{
-  pa
-}
 
 .my{
   list-style-type: none;
 }
+
 
 
 /* colors */

@@ -9,15 +9,18 @@ class categories_controller {
  * Muestra pantalla 'add'
  * @return No
  */
+    /*
 function add() {
   require_once("views/products_add.phtml");
 }
 
-
+*/
 /**
  * Mostra llistat
  * @return No
  */
+
+/*
 function view() {
   $categories = new categories_model();
 
@@ -27,7 +30,9 @@ function view() {
   //Llamado a la vista: mostrar la pantalla
   require_once("views/home_view.phtml");
 }
-
+ * */ 
+    
+    
 function mostrarLista($id){
 
   $lista = array();

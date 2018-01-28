@@ -57,8 +57,17 @@ class home_controller {
                 ];
             }
         }
-        // echo "<pre>".print_r($orderedCategories, 1)."</pre>";
         return $orderedCategories;
+    }
+    
+    public function shoppingCart(){
+        
+        $product  = new products_model();
+        
+        $cart_shopping_product = $product->get_shopping_cart();
+        
+        
+        
     }
 
 }
