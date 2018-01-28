@@ -74,12 +74,14 @@
     </form>
 
 
-    <?php if(!empty($_SESSION['usuario'])){echo "<span>Hola, {$_SESSION['usuario']}  </span>";} ?>
+    <?php if($_SESSION['usuario'] != "invitado")
+        {echo "<span>Hola, {$_SESSION['usuario']}  </span>";} 
+    ?>
 
 
 
     <!-- inicio login -->
-    <?php if (empty($_SESSION['usuario'])) { ?>
+    <?php if ($_SESSION['usuario'] == "invitado") { ?>
 
     <a href="#" class='btn btn-primary' data-toggle="modal" data-target="#loginModal">LOGIN</a>
 
@@ -89,7 +91,7 @@
         <div class='modal-dialog'>
             <div class='modal-content'>
                 <div class='modal-header'>
-                    <form class="" action="index.php?action=login" method="post">
+                    <form class="" action="index.php?controller=log&action=login" method="post">
 
                         <button type='button' class='close' data-dismiss='modal'>&times;</button>
                         <h4><span class='glyphicon glyphicon-lock'></span>Login</h4>
@@ -133,10 +135,10 @@
 
     <!-- fin login -->
 
-    <?php if (!empty($_SESSION['usuario'])) { ?>
+    <?php if ($_SESSION['usuario'] != "invitado") { ?>
 
       <button class='btn btn-default btn-primary'>
-           <a href="?action=logout">Logout</a>
+           <a href="?controller=log&action=logout">Logout</a>
       </button>
         <i class="fa fa-user-circle fa-2x mr-2 ml-2" aria-hidden="true" ></i>
 
@@ -159,7 +161,7 @@
                     <h4 class="modal-title float-left" id="myModalLabel2">Carrito de la compra</h4>
                 </div>
 
-                <?php for ($i = 0; $i < 6; $i++) { ?>
+                <?php  ?>
                     <li>
                         <span class="item">
                             <span class="item-left">
@@ -174,7 +176,7 @@
                             </span>
                         </span>
                     </li>
-                <?php } ?>
+                <?php  ?>
 
             </div>
             <!-- modal-content -->
@@ -303,8 +305,10 @@
                                     <?php } ?>
 
                                 </small>
+                                <form action="?controller=cart&action=addToCart" method="POST">
+                                <button name="id" value="<?php echo $product['ID']?>" class="btn btn-secondary float-right btn-sm jeje">Comprar</button>
+                                </form>
 
-                                <button class="btn btn-secondary float-right btn-sm jeje">Comprar</button>
                             </div>
                         </div>
                     </div>

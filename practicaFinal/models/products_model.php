@@ -112,17 +112,19 @@ class products_model {
         return $this->products;
     }
 
-    public function get_shopping_cart(array $id) {
+    public function get_shopping_cart() {
 
-        $idProducts = implode(",", $id);
-        $query = "SELECT * FROM PRODUCT WHERE ID in ({$idProducts})";
-        
-        $consulta = $this->db->query($query);
-        while ($filas = $consulta->fetch_assoc()) {
-            $this->products[] = $filas;
+        if (!empty($_SESSION["cart"])) {
+            $idProducts = implode(",", array_keys($_SESSION["cart"]));
+            $query = "SELECT * FROM PRODUCT WHERE ID in ({$idProducts})";
+
+            $consulta = $this->db->query($query);
+            while ($filas = $consulta->fetch_assoc()) {
+                $this->products[] = $filas;
+            }
+
+            return $this->products;
         }
-        
-        return $this->products;
     }
 
 }

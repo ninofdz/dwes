@@ -7,33 +7,65 @@ require_once("controllers/products_controller.php");
 require_once("controllers/login_controller.php");
 require_once("controllers/home_controller.php");
 require_once("controllers/products_controller.php");
+require_once("controllers/cart_controller.php");
 
 
+session_start();
+if (empty($_SESSION['usuario'])) {
+    $_SESSION['usuario'] = "invitado";
+}
+
+$cart = new cart_controller();
+$cart->shoppingCart();
 
 if (isset($_GET['controller']) && isset($_GET['action'])) {
-    $loginFailed = "";
-    if ($_GET["action"] == "login") {
-        $login = new login_controller();
-        $loged = $login->login();
-        if (!$loged) {
-            $loginFailed = $login->loginFailed();
+
+    if ($_GET["controller"] == "log") {
+        $controller = new home_controller();
+        $loginFailed = "";
+        if ($_GET["action"] == "login") {
+            $login = new login_controller();
+            $loged = $login->login();
+            if (!$loged) {
+                $loginFailed = $login->loginFailed();
+            }
         }
-    }
-    if ($_GET['action'] == "logout") {
-        if (session_status() == PHP_SESSION_ACTIVE) {
-            session_destroy();
+        if ($_GET['action'] == "logout") {
+            $_SESSION['usuario'] = "invitado";
         }
+
+        $controller->view("", $loginFailed);
     }
-    if($_GET['action'] == "addToCart"){
-        
+
+
+
+
+
+    if (!$_SESSION['usuario'] == "admin") {
+        $controller = new home_controller();
+
+        if ($_GET['controller'] == "cart") {
+
+            if ($_GET['action'] == "addToCart") {
+                $id = $_POST["id"];
+                $cart->addItemToCart($id);
+            }
+
+            if ($_GET['action'] == "deleteFromCart") {
+                
+            }
+        }
+        $controller->view("", $loginFailed);
     }
-    if($_GET['action'] == "deleteFromCart"){
-        
-    }
-    
+
+
+
+
+
+
 
     if ($_GET["controller"] == "home") {
-        if($_GET['']){
+        if ($_GET['action ==']) {
             
         }
     }

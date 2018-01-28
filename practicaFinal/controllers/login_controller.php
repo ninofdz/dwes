@@ -16,7 +16,6 @@ class login_controller {
         $ok = $usuario->verifyUser();
 
         if ($ok) {
-            session_start();
             $_SESSION['usuario'] = $username;
             return true;
         } else {
