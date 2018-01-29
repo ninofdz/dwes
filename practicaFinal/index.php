@@ -9,7 +9,7 @@ require_once("controllers/home_controller.php");
 require_once("controllers/products_controller.php");
 require_once("controllers/cart_controller.php");
 
-
+ob_start();
 session_start();
 if (empty($_SESSION['usuario'])) {
     $_SESSION['usuario'] = "invitado";
@@ -66,11 +66,12 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 
     if ($_GET['controller'] == "products") {
 
+        ob_clean();
+        
         if ($_GET['action'] == "view") {
             $controller = new products_controller();
             $id = $_GET['subCategory'];
-            $subCategory = $controller -> getProducts($id);
-            $controller->view($subCategory);
+            $controller->view($id);
         }
     }
     
@@ -125,7 +126,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
       */
      
 } else {
-
+    
     $controller = new home_controller();
     $controller->view($userCart);
 }

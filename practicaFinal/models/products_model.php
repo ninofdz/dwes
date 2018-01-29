@@ -99,7 +99,8 @@ class products_model {
      */
     public function get_products($subCategory="") {
 
-        echo "<pre>" .print_r($subCategory,1)."</pre>";
+        $this->products = [];
+        //echo "<pre>" .print_r($subCategory,1)."</pre>";
         //die();
         if (!empty($subCategory)) {
             $query = "SELECT * FROM PRODUCT WHERE CATEGORY = {$subCategory};";

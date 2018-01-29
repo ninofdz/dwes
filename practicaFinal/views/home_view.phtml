@@ -75,7 +75,7 @@
 
 
     <?php if($_SESSION['usuario'] != "invitado")
-        {echo "<span>Hola, {$_SESSION['usuario']}  </span>";} 
+        {echo "<span>Hola, {$_SESSION['usuario']}  </span>";}
     ?>
 
 
@@ -161,7 +161,7 @@
                     <h4 class="modal-title float-left" id="myModalLabel2">Carrito de la compra</h4>
                 </div>
 
-                <?php foreach ($data['cart'] as $item) { ?>                                            
+                <?php foreach ($data['cart'] as $item) { ?>
                     <li>
                         <span class="item">
                             <span class="item-left">
@@ -282,7 +282,7 @@
         <div class="container ">
             <div class="row">
                 <?php foreach ($data['products'] as $product) { ?>
-                    <div class="col-sm- col-md-4 col-lg-4 mt-4 minimo">
+                    <div class="col-sm- col-md-4 col-lg-4 mt-4 ">
 
                         <div class="card">
                             <img class="card-img-top" src="<?php echo $product['IMAGEN'];?>">
