@@ -97,7 +97,7 @@ class products_model {
      * Extreu totes les persones de la taula
      * @return array Bidimensional de totes les persones
      */
-    public function get_products($subCategory="") {
+    public function get_products($subCategory = "") {
 
         $this->products = [];
         //echo "<pre>" .print_r($subCategory,1)."</pre>";
@@ -105,7 +105,7 @@ class products_model {
         if (!empty($subCategory)) {
             $query = "SELECT * FROM PRODUCT WHERE CATEGORY = {$subCategory};";
         } else {
-            $query = "SELECT * FROM PRODUCT WHERE SPONSORED = 'Y';";
+            $query = "SELECT prod.*, img.URL FROM PRODUCT prod join IMAGE img on prod.ID = img.PRODUCT WHERE prod.SPONSORED = 'Y';";
         }
 
         $consulta = $this->db->query($query);
