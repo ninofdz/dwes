@@ -44,14 +44,14 @@
                             <div class="list-group">
 
                                 <?php
-                                foreach ($categoria as $key => $subcategoria) {
+                                    for ($i = 0; $i < count($categoria)-1; $i++ ) {
 
                                     if ($key == "NAME") {
                                        continue;
                                     }
 
-                                    $idSubCategory = $subcategoria['ID'];
-                                    $nameSubCategory = $subcategoria['NAME'];
+                                    $idSubCategory = $categoria[$i]['ID'];
+                                    $nameSubCategory = $categoria[$i]['NAME'];
                                     
                                     ?>
                                     <a href="?controller=products&action=view&subCategory=<?php echo $idSubCategory ?>" class="list-group-item list-group-item-action" id="<?php echo $idSubCategory ?>">

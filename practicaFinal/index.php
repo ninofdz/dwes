@@ -8,6 +8,8 @@ require_once("controllers/login_controller.php");
 require_once("controllers/home_controller.php");
 require_once("controllers/products_controller.php");
 require_once("controllers/cart_controller.php");
+require_once("controllers/view_controller.php");
+
 
 ob_start();
 session_start();
@@ -131,14 +133,14 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 } else {
     
     
-    //$html = include("views/home_view");
-    //$view = new view_controller($html);
-    //$subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    //$view->setHeaderTemplate(include("views/templates/header_template.phtml"));
-    
-    
-    $controller = new home_controller();
+    $html = file_get_contents("views/home_view.phtml");
+    $view = new view_controller($html);
     $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    $controller->view($userCart);
+    $view->setHeaderTemplate(file_get_contents("views/templates/header_template.phtml"));
+    $view->show();
+    
+    //$controller = new home_controller();
+    //$subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
+    //$controller->view($userCart);
 }
 ?>

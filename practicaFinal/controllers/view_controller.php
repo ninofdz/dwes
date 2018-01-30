@@ -83,13 +83,13 @@ class view_controller {
 
 }
 
-echo "hola que tal esto no se va a ver";
-
-
-$html = "Esto si<br>";
-
-$view = new view_controller($html);
-$view->setHeaderTemplate("Este es el encabezado<br>");
-$view->setFooterTemplate("Este es el pie");
-
-$view->show();
+//echo "hola que tal esto no se va a ver";
+//
+//
+//$html = "Esto si<br>";
+//
+//$view = new view_controller($html);
+//$view->setHeaderTemplate("Este es el encabezado<br>");
+//$view->setFooterTemplate("Este es el pie");
+//
+//$view->show();
