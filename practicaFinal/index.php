@@ -2,6 +2,7 @@
 
 require_once("db/db.php");
 
+require_once("controllers/categories_controller.php");
 require_once("controllers/personas_controller.php");
 require_once("controllers/products_controller.php");
 require_once("controllers/login_controller.php");
@@ -10,19 +11,15 @@ require_once("controllers/products_controller.php");
 require_once("controllers/cart_controller.php");
 require_once("controllers/view_controller.php");
 
-
 ob_start();
 session_start();
+
 if (empty($_SESSION['usuario'])) {
     $_SESSION['usuario'] = "invitado";
 }
 
-$cart = new cart_controller();
-$userCart = $cart->shoppingCart();
-
-
 if (isset($_GET['controller']) && isset($_GET['action'])) {
-
+    
     if ($_GET["controller"] == "log") {
         $controller = new home_controller();
         $loginFailed = "";
@@ -37,8 +34,14 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             $_SESSION['usuario'] = "invitado";
         }
 
-        $controller->view($userCart, $loginFailed);
     }
+
+    //Mostramos el default header 
+    $cart = new cart_controller();
+    $userCart = $cart->shoppingCart();
+    $category = new categories_controller();
+    $data['categories'] = $category->getCategories();
+    require_once "views/templates/header_template.phtml";
 
     if ($_SESSION['usuario'] != "admin") {
         $controller = new home_controller();
@@ -67,80 +70,78 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         }
     }
 
-    
+
     // mostrar productos por categortias
     if ($_GET['controller'] == "products") {
 
         ob_clean();
-        
+
         if ($_GET['action'] == "view") {
             $controller = new products_controller();
             $id = $_GET['subCategory'];
             $controller->view($id);
         }
     }
-    
+
 
     /* pruebas */
-    /*if ($_GET['controller'] == "categories") {
+    /* if ($_GET['controller'] == "categories") {
 
-        if ($_GET['action'] == "view") {
-            $controller = new products_controller();
-            $controller->view();
-        }
-    } */
+      if ($_GET['action'] == "view") {
+      $controller = new products_controller();
+      $controller->view();
+      }
+      } */
 
-    /*if ($_GET['controller'] == "categories") {
+    /* if ($_GET['controller'] == "categories") {
 
-        if ($_GET['action'] == "mostrarLista") {
-            $id = $_GET['id'];
-            $controller = new categories_controller();
-            $products = $controller->mostrarLista($id);
+      if ($_GET['action'] == "mostrarLista") {
+      $id = $_GET['id'];
+      $controller = new categories_controller();
+      $products = $controller->mostrarLista($id);
 
-            $controller->view();
-        }
-    }*/
+      $controller->view();
+      }
+      } */
 
     /*
-    if ($_GET['controller'] == "coches") {
+      if ($_GET['controller'] == "coches") {
 
-        if ($_GET['action'] == "view") {
-            $controller = new coches_controller();
-            $controller->view();
-        }
+      if ($_GET['action'] == "view") {
+      $controller = new coches_controller();
+      $controller->view();
+      }
 
-        if ($_GET['action'] == "add") {
-            $controller = new coches_controller();
-            $controller->add();
-        }
+      if ($_GET['action'] == "add") {
+      $controller = new coches_controller();
+      $controller->add();
+      }
 
-        if ($_GET['action'] == "insert") {
-            $controller = new coches_controller();
-            $controller->insert();
-        }
+      if ($_GET['action'] == "insert") {
+      $controller = new coches_controller();
+      $controller->insert();
+      }
 
-        if ($_GET['action'] == "delete") {
-            $controller = new coches_controller();
-            $controller->delete();
-        }
+      if ($_GET['action'] == "delete") {
+      $controller = new coches_controller();
+      $controller->delete();
+      }
 
-        if ($_GET['action'] == "ordmarca") {
-            $controller = new coches_controller();
-            $controller->ordmarca();
-        }
-      */
-     
+      if ($_GET['action'] == "ordmarca") {
+      $controller = new coches_controller();
+      $controller->ordmarca();
+      }
+     */
 } else {
-    
-    
-    //$html = file_get_contents("views/home_view.phtml");
-    //$view = new view_controller($html);
-    //$subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    //$view->setHeaderTemplate(file_get_contents("views/templates/header_template.phtml"));
-    //$view->show();
-    
-    $controller = new home_controller();
-    $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    $controller->view($userCart);
+
+    //Mostramos el default header
+    $cart = new cart_controller();
+    $userCart = $cart->shoppingCart();
+    $category = new categories_controller();
+    $data['categories'] = $category->getCategories();
+    require_once "views/templates/header_template.phtml";
+
+    $homeController = new home_controller();
+    $homeController->view();
 }
 ?>

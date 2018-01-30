@@ -5,14 +5,11 @@ require_once("models/products_model.php");
 
 class home_controller {
 
-    function view($cart ="", $loginFailed = "") {
+    function view() {
 
         $data = array();
         $data['products'] = $this->getProducts();
         $data['categories'] = $this->getCategories();
-        $data['cart'] = $cart;
-        //echo "<pre>" .print_r($data['cart'],1). "</pre>";
-        //die();
 
         require_once("views/home_view.phtml");
     }
