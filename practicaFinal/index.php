@@ -133,14 +133,14 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 } else {
     
     
-    $html = file_get_contents("views/home_view.phtml");
-    $view = new view_controller($html);
-    $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    $view->setHeaderTemplate(file_get_contents("views/templates/header_template.phtml"));
-    $view->show();
-    
-    //$controller = new home_controller();
+    //$html = file_get_contents("views/home_view.phtml");
+    //$view = new view_controller($html);
     //$subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
-    //$controller->view($userCart);
+    //$view->setHeaderTemplate(file_get_contents("views/templates/header_template.phtml"));
+    //$view->show();
+    
+    $controller = new home_controller();
+    $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
+    $controller->view($userCart);
 }
 ?>

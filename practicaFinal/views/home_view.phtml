@@ -1,3 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="views/css.css">
+        <!--<script src="https://use.fontawesome.com/fd4530cf2.js"></script>-->
+
+
+    </head>
+
+    <body>
+
+        <?php
+        if (!empty($loginFailed)) {
+            echo $loginFailed['openModel'];
+        }
+        ?>
+
+        <nav class="navbar navbar-expand  navbar-light bg-grisOscuro">
+
+            <img src="views/logo1.png" class="img-logo mr-1" alt="">
+            <a class="navbar-brand" href="#">Components Bear PC</a>
+
+            <button type="button" data-toggle="dropdown" class="btn-danger">Categorias</button>
+
+            <div class="dropdown-menu dropdown-mega">
+                <div class="row container">
+
+                    <!--  recorremos el array de categorias y el de subcategorias -->
+                    <?php
+                    foreach ($data['categories'] as $key => $categoria) {
+                        $idCategory = $key;
+                        $nameCategory = $categoria["NAME"];
+                        ?>
+                        <div class="col-md-4 dropdown-mega--column">
+                            <h4 class="dropdown-mega--menu-header" id="<?php echo $idCategory; ?>"><?php echo $nameCategory; ?></h4>
+                            <div class="list-group">
+
+                                <?php
+                                    for ($i = 0; $i < count($categoria)-1; $i++ ) {
+
+                                    if ($key == "NAME") {
+                                       continue;
+                                    }
+
+                                    $idSubCategory = $categoria[$i]['ID'];
+                                    $nameSubCategory = $categoria[$i]['NAME'];
+                                    
+                                    ?>
+                                    <a href="?controller=products&action=view&subCategory=<?php echo $idSubCategory ?>" class="list-group-item list-group-item-action" id="<?php echo $idSubCategory ?>">
+                                        <?php echo $nameSubCategory ?> </a>
+
+                                <?php } ?> </div>
+                        </div>
+                    <?php } ?>
+
+
+
+                </div>
+            </div>
+            <!--.row-->
+        </div>
+        <!--.dropdown-menu .dropdown-mega-->
+    </div>
+
+    <form class="form-inline mx-auto" action="/action_page.php">
+        <input class="form-control" type="text" placeholder="Search">
+    </form>
+
+
+    <?php if($_SESSION['usuario'] != "invitado")
+        {echo "<span>Hola, {$_SESSION['usuario']}  </span>";}
+    ?>
+
+
+
+    <!-- inicio login -->
+    <?php if ($_SESSION['usuario'] == "invitado") { ?>
+
+    <a href="#" class='btn btn-primary' data-toggle="modal" data-target="#loginModal">LOGIN</a>
+
+    <?php } ?>
+
+    <div class='modal fade' id='loginModal' role='dialog'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <div class='modal-header'>
+                    <form class="" action="index.php?controller=log&action=login" method="post">
+
+                        <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                        <h4><span class='glyphicon glyphicon-lock'></span>Login</h4>
+                </div>
+                <div class='modal-body'>
+                    <div>
+                        <div class='form-group'>
+                            <label htmlFor='username'><span class='glyphicon glyphicon-user'></span></label>
+                            <input type='text' name="username" class='form-control' id='username'
+                                   placeholder='Enter user' />
+                        </div>
+                        <div class='form-group'>
+                            <label htmlFor='password'><span class='glyphicon glyphicon-eye-open'></span></label>
+                            <input
+                                onChange={
+        this.onPasswordChange.bind(this)}
+                                type='text' name="password" class='form-control' id='password'
+                                placeholder='Enter password' />
+                        </div>
+                        <?php
+                        if (!empty($loginFailed)) {
+                            echo "<span>{$loginFailed['message']}</span>";
+                        }
+                        ?>
+
+                        <button class='btn btn-default btn-primary btn-block'
+                            <span class='glyphicon glyphicon-off'></span> Login
+                        </button>
+                    </div>
+                </div>
+                <div class='modal-footer'>
+                    <a href="#"><button type='submit' class='btn btn-danger pull-left' data-dismiss='modal'></a>
+                        </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- fin login -->
+
+    <?php if ($_SESSION['usuario'] != "invitado") { ?>
+
+      <button class='btn btn-default btn-primary'>
+           <a href="?controller=log&action=logout">Logout</a>
+      </button>
+        <i class="fa fa-user-circle fa-2x mr-2 ml-2" aria-hidden="true" ></i>
+
+    <?php } ?>
+
+    <!-- carrito -->
+
+    <a href="#" class="text-light" data-toggle="modal" data-target="#myModal2">
+        <i class="fa fa-shopping-cart fa-2x" aria-hidden="true"></i>
+        <span class="badge badge-dark">4</span>
+    </a>
+
+    <!-- Modal -->
+    <div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-header ">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title float-left" id="myModalLabel2">Carrito de la compra</h4>
+                </div>
+
+                <?php if(!empty($data['cart'])){ foreach ($data['cart'] as $item) { ?>
+                    <li>
+                        <span class="item">
+                            <span class="item-left">
+                                <img src="http://www.prepbootstrap.com/Content/images/template/menucartdropdown/item_1.jpg" alt="" />
+                                <span class="item-info">
+                                    <span><?php echo $item['NAME'] ?></span>
+                                    <span><?php echo $item['nUnits']?></span>
+                                    <span><?php echo $item['PRICE']?></span>
+
+                                </span>
+                            </span>
+                            <span class="item-right">
+                                <a href="?controller=cart&action=deleteFromCart&id=<?php echo $item['ID']?>"><button class="btn btn-danger  fa fa-close"></button></a>
+                            </span>
+                        </span>
+                    </li>
+                <?php  }} ?>
+
+            </div>
+            <!-- modal-content -->
+        </div>
+        <!-- modal-dialog -->
+    </div>
+    <!-- modal -->
+
+
+
+</nav>
+
+
+
+
 <div class="bg-grisa myDiv" >
 
 
