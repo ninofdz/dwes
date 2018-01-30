@@ -106,6 +106,8 @@ class products_model {
             $query = "SELECT * FROM PRODUCT WHERE CATEGORY = {$subCategory};";
         } else {
             $query = "SELECT prod.*, img.URL FROM PRODUCT prod join IMAGE img on prod.ID = img.PRODUCT WHERE prod.SPONSORED = 'Y';";
+            //$query = "SELECT prod.* FROM PRODUCT prod WHERE prod.SPONSORED = 'Y';";
+
         }
 
         $consulta = $this->db->query($query);
@@ -128,7 +130,8 @@ class products_model {
 
             return $this->products;
         }
-    }
+        
+        }
 
 }
 

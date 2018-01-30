@@ -49,7 +49,10 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
             }
 
             if ($_GET['action'] == "deleteFromCart") {
-                
+                $id = $_GET['id'];
+                //echo "<pre>" .print_r($id,1). "</pre>";
+                //die();
+                $cart->deleteItemFromCart($id);
             }
         }
         $controller->view($userCart);
@@ -63,7 +66,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     }
 
     
-
+    // mostrar productos por categortias
     if ($_GET['controller'] == "products") {
 
         ob_clean();
@@ -76,16 +79,16 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     }
     
 
-
-    if ($_GET['controller'] == "categories") {
+    /* pruebas */
+    /*if ($_GET['controller'] == "categories") {
 
         if ($_GET['action'] == "view") {
-            $controller = new categories_controller();
+            $controller = new products_controller();
             $controller->view();
         }
-    }
+    } */
 
-    if ($_GET['controller'] == "categories") {
+    /*if ($_GET['controller'] == "categories") {
 
         if ($_GET['action'] == "mostrarLista") {
             $id = $_GET['id'];
@@ -94,7 +97,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 
             $controller->view();
         }
-    }
+    }*/
 
     /*
     if ($_GET['controller'] == "coches") {
@@ -127,7 +130,15 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
      
 } else {
     
+    
+    //$html = include("views/home_view");
+    //$view = new view_controller($html);
+    //$subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
+    //$view->setHeaderTemplate(include("views/templates/header_template.phtml"));
+    
+    
     $controller = new home_controller();
+    $subCategory = !empty($_GET['subCategory']) ? $_GET['subCategory'] : "";
     $controller->view($userCart);
 }
 ?>

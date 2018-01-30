@@ -1,43 +1,42 @@
 <?php
+
 //Llamada al modelo
 require_once("models/categories_model.php");
 
-
 class categories_controller {
-
-/**
- * Muestra pantalla 'add'
- * @return No
- */
+    /**
+     * Muestra pantalla 'add'
+     * @return No
+     */
     /*
-function add() {
-  require_once("views/products_add.phtml");
-}
+      function add() {
+      require_once("views/products_add.phtml");
+      }
 
-*/
-/**
- * Mostra llistat
- * @return No
- */
+     */
 
-/*
-function view() {
-  $categories = new categories_model();
+    /**
+     * Mostra llistat
+     * @return No
+     */
+    /*
+      function view() {
+      $categories = new categories_model();
 
-  //Uso metodo del modelo de personas
-  $datos=$categories->get_categories();
+      //Uso metodo del modelo de personas
+      $datos=$categories->get_categories();
 
-  //Llamado a la vista: mostrar la pantalla
-  require_once("views/home_view.phtml");
-}
- * */ 
-    
-     function getCategories() {
+      //Llamado a la vista: mostrar la pantalla
+      require_once("views/home_view.phtml");
+      }
+     * */
 
-      // Creamos el objeto de la clase categorias_model
+    function getCategories() {
+
+        // Creamos el objeto de la clase categorias_model
         $categories = new categories_model();
 
-      // llamamos a la funcion get_categories y guardamos en myCategories las categorias y subcategorias de la bd
+        // llamamos a la funcion get_categories y guardamos en myCategories las categorias y subcategorias de la bd
         $myCategories = $categories->get_categories();
         // cremamos un array para guardar las categorias ordenadas (las categorías con sus subcategorías)
         $orderedCategories = array();
@@ -51,9 +50,9 @@ function view() {
             $name = $dato["NAME"];
             $parentCategory = $dato["PARENTCATEGORY"];
 
-          // comprobamos si es categoria principal, si el array no existe lo crea y añade el nombre de la categoria dentro de ella.
-          // Si es uina subcategoria, comprueba si la categoria principal existe, si no existe lo crea y guarda dentro de ella
-          // su subcategoria con su nombre e ID
+            // comprobamos si es categoria principal, si el array no existe lo crea y añade el nombre de la categoria dentro de ella.
+            // Si es uina subcategoria, comprueba si la categoria principal existe, si no existe lo crea y guarda dentro de ella
+            // su subcategoria con su nombre e ID
 
             if (empty($parentCategory)) {
                 if (!array_key_exists($id, $orderedCategories)) {
@@ -70,8 +69,12 @@ function view() {
                 ];
             }
         }
+
+        //echo "<pre>" .print_r($orderedCategories,1). "</pre>";
+        //die();
         return $orderedCategories;
     }
 
 }
- ?>
+
+?>

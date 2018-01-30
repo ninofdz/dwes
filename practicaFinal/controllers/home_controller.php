@@ -5,13 +5,13 @@ require_once("models/products_model.php");
 
 class home_controller {
 
-    function view($cart, $loginFailed = "") {
+    function view($cart ="", $loginFailed = "") {
 
         $data = array();
         $data['products'] = $this->getProducts();
         $data['categories'] = $this->getCategories();
         $data['cart'] = $cart;
-        //echo "<pre>" .print_r($data['products'],1). "</pre>";
+        //echo "<pre>" .print_r($data['cart'],1). "</pre>";
         //die();
 
         require_once("views/home_view.phtml");
@@ -61,6 +61,8 @@ class home_controller {
                 ];
             }
         }
+        //echo "<pre>" .print_r($orderedCategories,1). "</pre>";
+        //die();
         return $orderedCategories;
     }
     

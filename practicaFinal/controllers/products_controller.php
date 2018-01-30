@@ -85,6 +85,11 @@ class products_controller {
                 ];
             }
         }
+        
+        //echo "<pre>" .print_r($orderedCategories,1). "</pre>";
+        //die();
+                
+       
         return $orderedCategories;
     }
 
