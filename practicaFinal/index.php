@@ -19,7 +19,7 @@ if (empty($_SESSION['usuario'])) {
 }
 
 if (isset($_GET['controller']) && isset($_GET['action'])) {
-    
+
     if ($_GET["controller"] == "log") {
         $controller = new home_controller();
         $loginFailed = "";
@@ -33,12 +33,12 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
         if ($_GET['action'] == "logout") {
             $_SESSION['usuario'] = "invitado";
         }
-
     }
 
     //Mostramos el default header 
+
     $cart = new cart_controller();
-    $userCart = $cart->shoppingCart();
+    $data['cart'] = $cart->shoppingCart();
     $category = new categories_controller();
     $data['categories'] = $category->getCategories();
     require_once "views/templates/header_template.phtml";
@@ -60,7 +60,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
                 $cart->deleteItemFromCart($id);
             }
         }
-        $controller->view($userCart);
+        $controller->view();
     }
 
 
@@ -74,7 +74,7 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
     // mostrar productos por categortias
     if ($_GET['controller'] == "products") {
 
-        ob_clean();
+        
 
         if ($_GET['action'] == "view") {
             $controller = new products_controller();
@@ -135,11 +135,12 @@ if (isset($_GET['controller']) && isset($_GET['action'])) {
 } else {
 
     //Mostramos el default header
-    $cart = new cart_controller();
-    $userCart = $cart->shoppingCart();
     $category = new categories_controller();
+    $cart = new cart_controller();
+    $data['cart'] = $cart->shoppingCart();
     $data['categories'] = $category->getCategories();
     require_once "views/templates/header_template.phtml";
+
 
     $homeController = new home_controller();
     $homeController->view();
